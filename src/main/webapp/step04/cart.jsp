@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="dto.Product" %>  
-<%@ page import="dao.ProductRepository" %>  
+<%@ page import="java.util.ArrayList" %>    
+<%@ page import="dto.Product" %>    
+<jsp:useBean id="productDAO" class="dao.ProductRepository" scope="session"/>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,63 +39,78 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
-  <script>
-     function addToCart(){
-    	 if(confirm("상품을 장바구니에 추가하시겠습니까?")){
-    		 document.addForm.submit();
-    	 }else{
-    		 document.addForm.reset();
-    	 }
-     }
-  </script>
 </head>
 
-<body class="index-page">
+<body>
 
   <!-- header include-->
   <%@ include file="navi.jsp" %>
-  <main class="main">
-  	<section id="#" class="section bs-warning mt-5 ">
-  		<div class="container position-relative mt-5">
-  			
-  				<div class="row mt-5">
-	  				<h1>상품 상세 정보</h1><br />
-	  			</div>
-	  			<br />
-	  			<%
-	  				String id = request.getParameter("id");
-	  			    ProductRepository dao = ProductRepository.getInstance();
-	  				Product product = dao.getProductById(id);
-	  			%>
-	  			<div class="row">
-	  			    <div class="col-md-6">
-	  			        <img src="../resources/assets/img/product/<%=product.getFilename() %>" class="img-fluid" alt="">
-	  			    </div>
-	  				<div class="col-md-6">
-	  					<h3><%=product.getPname() %></h3>
-	  					<p><%=product.getDescription() %></p>
-	  					<p><b>상품코드 : </b><span><%=product.getProductId() %></span></p>
-	  					<p><b>분류 : </b><span><%=product.getCategory() %></span></p>
-	  					<p><b>제품상태 : </b><span><%=product.getDescription() %></span></p>
-	  					<p><b>제품가격 : </b><span><%=product.getUnitPrice() %></span></p>
-  					    <p>
-  					        <form action="./addCart.jsp?id=<%=product.getProductId() %>" name="addForm" method="post">
-  					             
-  					             <a href="./index.jsp#products" class="btn btn-secondary my-2">상품 목록 &raquo;</a>
-  					             <input onclick="addToCart();" class="btn btn-danger my-2" value="장바구니에 상품 추가 &raquo;" type="button">
-  					             <a href="./cart.jsp" class="btn btn-info my-2">장바구니 바로가기 &raquo;</a>
-  					        </form>
-  					    </p>
-	  				</div>
-	  			</div>
-  		</div>
-  	</section>
-  </main>
+  <div class="container-fluid bg-light p-5">
+       <h1 class="p-5 display-3 mt-5">장바구니</h1>
+  </div>
+  <div class="container">
+    <div class="row">
+       <table width="100%">
+          <tr>
+             <td align="left">
+                <a href="" class="btn btn-danger">장바구니 리스트 모두 삭제하기</a>
+             </td>
+             <td align="right">
+                <a href="" class="btn btn-success">주문하기</a>
+             </td>
+          </tr>
+       
+       </table>
+    </div><!-- row -->
+    <div class="row">
+         <table width="100%"">
+          <tr>
+             <th>상품</th>
+             <th>가격</th>
+             <th>수량</th>
+             <th>상품별 총액</th>
+             <th>비고</th>
+          </tr>
+          <%
+              int sum = 0; //결제총액
+              ArrayList<Product> cartList = (ArrayList<Product>)session.getAttribute("cartlist");
+              if(cartList == null) cartList = new ArrayList<Product>();
+              for(int i=0; i<cartList.size(); i++){
+            	  Product product = cartList.get(i);
+            	  int total = product.getUnitPrice() * product.getQuantity(); //total:소계
+            	  sum  += total; //sum:결제총액
+           %>
+           <tr>
+           	<td><%=product.getProductId() %> - <%= product.getPname() %></td>
+           	<td><%=product.getUnitPrice() %></td>
+           	<td><%=product.getQuantity() %></td>
+           	<td><%=total %></td>
+           	<td><a href="" class="badge badge-danger">삭제</a></td>
+           </tr>
+           
+           <%
+              }
+           %>
+           <tr>
+           	<th></th>
+           	<th></th>
+           	<th>총액</th>
+           	<th><%=sum %></th>
+           	<th></th>
+           </tr>
+       
+       </table>
+    </div><!-- row -->
+  </div>
+  
+  
+  
+  
   
   
 	
- <!-- footer include -->
- <%@ include file="footer.jsp" %>
+  <!-- footer include -->
+  <%@ include file="footer.jsp" %>
  
   <!-- Scroll Top -->
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
