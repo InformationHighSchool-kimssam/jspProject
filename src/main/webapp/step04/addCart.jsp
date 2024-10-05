@@ -39,10 +39,10 @@ if(list == null){
 int cnt = 0;
 Product goodsQnt = new Product();
 for(int i=0; i<list.size(); i++){ //장바구니에 담긴 상품 리스트의 수만큼 loop를 돌려서 
-	goodsQnt = list.get(i); //첫번째 상품부터 객체에 담고
+	goodsQnt  = list.get(i); //첫번째 상품부터 객체에 담고
 	if(goodsQnt.getProductId().equals(id)){ //요청한 파라미터 아이디 상품이 장바구니에 담긴 목록이라면
 		cnt++;
-		int orderQuantity = goodsQnt.getQuantity()+1; //기존의 장바구니 수량에 1을 더하여
+		int orderQuantity   = goodsQnt.getQuantity()+1; //기존의 장바구니 수량에 1을 더하여
 		goodsQnt.setQuantity(orderQuantity); //해당 수량으로 저장
 	}
 }

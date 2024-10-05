@@ -39,10 +39,6 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
-
-<%
-String cartId = session.getId(); //JsessionId 얻어오는 메소드
-%>
 </head>
 
 <body>
@@ -50,63 +46,47 @@ String cartId = session.getId(); //JsessionId 얻어오는 메소드
   <!-- header include-->
   <%@ include file="navi.jsp" %>
   <div class="container-fluid bg-light p-5">
-       <h1 class="p-5 display-3 mt-5">장바구니</h1>
+       <h1 class="p-5 display-3 mt-5">배송 정보</h1>
   </div>
   <div class="container">
     <div class="row my-5">
-       <table width="100%">
-          <tr>
-             <td align="left">
-                <a href="./deleteCart.jsp?cartId=<%=cartId %>" class="btn btn-danger">장바구니 리스트 모두 삭제하기</a>
-             </td>
-             <td align="right">
-                <a href="./shippingInfo.jsp?cartId=<%=cartId %>" class="btn btn-success">주문하기</a>
-             </td>
-          </tr>
-       
-       </table>
-    </div><!-- row -->
-    <div class="row mb-5">
-         <table width="100%" class="table table-success table-striped">
-          <tr>
-             <th>상품</th>
-             <th>가격</th>
-             <th>수량</th>
-             <th>상품별 총액</th>
-             <th>비고</th>
-          </tr>
-          <%
-              int sum = 0; //결제총액
-              ArrayList<Product> cartList = (ArrayList<Product>)session.getAttribute("cartlist");
-              if(cartList == null) cartList = new ArrayList<Product>();
-              for(int i=0; i<cartList.size(); i++){
-            	  Product product = cartList.get(i);
-            	  int total = product.getUnitPrice() * product.getQuantity(); //total:소계
-            	  sum  += total; //sum:결제총액
-           %>
-           <tr>
-           	<td><%=product.getProductId() %> - <%= product.getPname() %></td>
-           	<td><%=product.getUnitPrice() %></td>
-           	<td><%=product.getQuantity() %></td>
-           	<td><%=total %></td>
-           	<td><a href="./removeCart.jsp?id=<%=product.getProductId() %>" class="badge border border-success text-success">삭제</a></td>
-           </tr>
-           
-           <%
-              }
-           %>
-           <tr>
-           	<th></th>
-           	<th></th>
-           	<th>총액</th>
-           	<th><%=sum %></th>
-           	<th></th>
-           </tr>
-       
-       </table>
-    </div><!-- row -->
-  </div>
-  
+        <form action="./proccessShippingInfo.jsp">
+				<div class="row my-5">
+					<label for="colFormLabelLg"
+						class="col-sm-2 col-form-label col-form-label-lg">이름</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control form-control-lg"
+							id="colFormLabelLg" placeholder="성함 입력">
+					</div>
+				</div>
+				<div class="row my-5">
+					<label for="colFormLabelLg"
+						class="col-sm-2 col-form-label col-form-label-lg">배송일 예약</label>
+					<div class="col-sm-10">
+						<input type="date" class="form-control form-control-lg"
+							id="colFormLabelLg" placeholder="">
+					</div>
+				</div>
+				<h1>카카오 우편번호 api</h1>
+				<div class="row my-5">
+					<label for="colFormLabelLg"
+						class="col-sm-2 col-form-label col-form-label-lg">주소</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control form-control-lg"
+							id="colFormLabelLg" placeholder="주소 입력">
+					</div>
+				</div>
+				<div class="row my-5">
+					<label for="colFormLabelLg"
+						class="col-sm-2 col-form-label col-form-label-lg">연락처</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control form-control-lg"
+							id="colFormLabelLg" placeholder="연락처 입력" size="4">
+					</div>
+				</div>
+		</form>
+    </div>
+  </div>  
   
   
   
