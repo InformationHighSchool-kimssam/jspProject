@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.ArrayList" %>    
-<%@ page import="dto.Product" %>    
-<jsp:useBean id="productDAO" class="dao.ProductRepository" scope="session"/>
+<%@ page import="dto.Product" %>  
+<%@ page import="dao.ProductRepository" %>  
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,22 +38,63 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+  <script>
+     function addToCart(){
+    	 if(confirm("상품을 장바구니에 추가하시겠습니까?")){
+    		 document.addForm.submit();
+    	 }else{
+    		 document.addForm.reset();
+    	 }
+     }
+  </script>
 </head>
 
-<body>
-  
+<body class="index-page">
+
   <!-- header include-->
   <%@ include file="navi.jsp" %>
-  
-  
-  
-  
-  
+  <main class="main">
+  	<section id="#" class="section bs-warning mt-5 ">
+  		<div class="container position-relative mt-5">
+  			
+  				<div class="row mt-5">
+	  				<h1>상품 상세 정보</h1><br />
+	  			</div>
+	  			<br />
+	  			<%
+	  				String id = request.getParameter("id");
+	  			    ProductRepository dao = ProductRepository.getInstance();
+	  				Product product = dao.getProductById(id);
+	  			%>
+	  			<div class="row">
+	  			    <div class="col-md-6">
+	  			        <img src="../resources/assets/img/product/<%=product.getFilename() %>" class="img-fluid" alt="">
+	  			    </div>
+	  				<div class="col-md-6">
+	  					<h3><%=product.getPname() %></h3>
+	  					<p><%=product.getDescription() %></p>
+	  					<p><b>상품코드 : </b><span><%=product.getProductId() %></span></p>
+	  					<p><b>분류 : </b><span><%=product.getCategory() %></span></p>
+	  					<p><b>제품상태 : </b><span><%=product.getDescription() %></span></p>
+	  					<p><b>제품가격 : </b><span><%=product.getUnitPrice() %></span></p>
+  					    <p>
+  					        <form action="./addCart.jsp?id=<%=product.getProductId() %>" name="addForm" method="post">
+  					             
+  					             <a href="./index.jsp#products" class="btn btn-secondary my-2">상품 목록 &raquo;</a>
+  					             <input onclick="addToCart();" class="btn btn-danger my-2" value="장바구니에 상품 추가 &raquo;" type="button">
+  					             <a href="./cart.jsp" class="btn btn-info my-2">장바구니 바로가기 &raquo;</a>
+  					        </form>
+  					    </p>
+	  				</div>
+	  			</div>
+  		</div>
+  	</section>
+  </main>
   
   
 	
-  <!-- footer include -->
-  <%@ include file="footer.jsp" %>
+ <!-- footer include -->
+ <%@ include file="footer.jsp" %>
  
   <!-- Scroll Top -->
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>

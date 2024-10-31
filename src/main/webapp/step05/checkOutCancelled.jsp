@@ -42,17 +42,20 @@
 </head>
 
 <body>
-  
+
   <!-- header include-->
   <%@ include file="navi.jsp" %>
-  
-  
-  
-  
-  
-  
-  
-	
+  <div class="container-fluid bg-light p-5">
+       <h1 class="p-5 display-3 mt-5">주문 취소</h1>
+  </div>
+  <div class="container">
+    <div class="row my-5">
+       <h2 class="alert alert-danger">주문이 취소되었습니다.</h2>
+    </div><!-- row -->
+    <div class="row mb-5">
+      <p><a href="./index.jsp#products">상품 목록 바로가기</a></p>   
+    </div><!-- row -->
+  </div>
   <!-- footer include -->
   <%@ include file="footer.jsp" %>
  
