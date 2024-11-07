@@ -1,9 +1,22 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%-- <%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%> --%>
 <%@ page import="dto.Product" %>  
 <%@ page import="dao.ProductRepository" %>  
 <%-- <jsp:useBean id="productDAO" class="dao.ProductRepository" scope="session"/> --%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<%@ include file="dbconn.jsp" %>
+<%
+String productId = request.getParameter("id");
+
+String sql = "select * from product where p_productId=?";
+pstmt = conn.prepareStatement(sql);
+pstmt.setString(1, productId);
+rs = pstmt.executeQuery();
+if(rs.next()){
+	
+}
+%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,7 +59,11 @@ left:140px;
 display:inline-block;
 }
 </style>
+<script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
 <script>
+$(funtion(){
+	updateFileName();
+
 function updateFileName(){
 	const input = document.getElementById("pImg")
 	const fileNameLabel =  document.getElementById("file-name")
@@ -71,7 +88,7 @@ function changeLanguage(lang){
 		fileNameLabel.textContent="No file chosen"
 	}
 }
-
+})
 /* const koBtn= document.getElementById("koBtn")
 const enBtn= document.getElementById("enBtn")
 koBtn.addEventListener("click",function(){
@@ -98,7 +115,7 @@ enBtn.addEventListener("click",function(){
   			
   				<div class="row mt-5">
 	  				<div class="col">
-	  				    <h1><fmt:message key="title"/>  </h1> 
+	  				    <h1><fmt:message key="titleEdit"/>  </h1> 
 	  				    <br />
 	  				</div>
 	  				<div class="col-3">
@@ -110,7 +127,7 @@ enBtn.addEventListener("click",function(){
 	  			</div>
 	  			<br />
 				<div class="row">
-					<form class="g-3" action="./processAddProduct.jsp" method="post" enctype="multipart/form-data" name="registerNewProduct">
+					<form class="g-3" action="./processUpdateProduct.jsp" method="post" enctype="multipart/form-data" name="registerNewProduct">
 						<div class="row m-3">
 							<div class="col-2">
 								<label for="newProduct" class="">
@@ -118,7 +135,7 @@ enBtn.addEventListener("click",function(){
                                 </label>
 							</div>
 							<div class="col-4">
-								<input type="text" class="form-control" id="newProduct" placeholder="" name="newProduct">
+								<input type="text" class="form-control" id="newProduct" placeholder="" name="newProduct" value="<%=rs.getString("p_productId") %>">
 							</div>
 						</div>
 						<div class="row m-3">
@@ -128,8 +145,7 @@ enBtn.addEventListener("click",function(){
                                 </label>
 							</div>
 							<div class="col-4">
-								<input type="text" class="form-control" id="pName"
-									placeholder="" name="pName">
+								<input type="text" class="form-control" id="pName" placeholder="" name="pName" value="<%=rs.getString("p_pname") %>">
 							</div>
 						</div>
 						<div class="row m-3">
@@ -139,7 +155,7 @@ enBtn.addEventListener("click",function(){
 								</label>
 							</div>
 							<div class="col-4">
-								<input type="text" class="form-control" id="unitPrice" placeholder="" name="unitPrice">
+								<input type="text" class="form-control" id="unitPrice" placeholder="" name="unitPrice" value="<%=rs.getString("p_unitPrice") %>">
 							</div>
 						</div>
 						<div class="row m-3">
@@ -149,7 +165,7 @@ enBtn.addEventListener("click",function(){
                                 </label>
 							</div>
 							<div class="col-4">
-								<input type="text" class="form-control" id="description" placeholder="" name="description">
+								<input type="text" class="form-control" id="description" placeholder="" name="description" value="<%=rs.getString("p_description") %>">
 							</div>
 						</div>
 						<div class="row m-3">
@@ -159,8 +175,7 @@ enBtn.addEventListener("click",function(){
 								</label>
 							</div>
 							<div class="col-4">
-								<input type="text" class="form-control" id="category"
-									placeholder=""  name="category">
+								<input type="text" class="form-control" id="category" placeholder=""  name="category" value="<%=rs.getString("p_category") %>">
 							</div>
 						</div>
 						<div class="row m-3">
@@ -171,12 +186,13 @@ enBtn.addEventListener("click",function(){
 							</div>
 							<div class="col-4">
 								<input type="radio" id="New"
-									placeholder="" value="New" name="condition" checked>  
+									placeholder="" value="New" name="condition" <% if("New".equals(rs.getString("p_condition"))) { %> checked <% } %>>  
+									
 								<label for="New">
 								       <fmt:message key="condition_New"/>
 								</label>
 								<input type="radio" id="Old"
-									placeholder="" value="Old" name="condition">  
+									placeholder="" value="Old" name="condition"  <% if("Old".equals(rs.getString("p_condition"))) { %> checked <% } %>>  
 								<label for="Old">
 								      <fmt:message key="condition_Old"/>
 								</label>
@@ -197,7 +213,8 @@ enBtn.addEventListener("click",function(){
 								<input type="file" id="pImg"
 									name="pImg" onchange="updateFileName()">
 								<span id="file-name">
-								     <fmt:message key="noFile"/>
+								    <fmt:message key="noFile"/>
+								     
 								</span> 
 							</div>
 						</div>
@@ -208,8 +225,7 @@ enBtn.addEventListener("click",function(){
                                 </label>
 							</div>
 							<div class="col-4">
-								<input type="text" class="form-control" id="pQuantity"
-									placeholder="" name="pQuantity">
+								<input type="text" class="form-control" id="pQuantity" placeholder="" name="pQuantity" value="<%=rs.getString("p_quantity") %>">
 							</div>
 						</div>
 						<div class="row m-3">

@@ -5,6 +5,10 @@
 <%@ page import="dto.Product" %>    
 <%-- <%@ page import="dao.ProductRepository" %> --%>
 <jsp:useBean id="productDAO" class="dao.ProductRepository" scope="session"/>
+ <%
+ String edit = request.getParameter("edit");
+ if (edit == null) edit = "";
+ %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -564,13 +568,26 @@
                   <p><%=rs.getString("p_unitPrice")%></p>
                   <p><%=rs.getString("p_condition")%></p>
                   <br />
-                  <p><a href="./product.jsp?id=<%=rs.getString("p_productId")%>" class="btn btn-secondary">상세 정보 바로가기 &raquo;</a></p>
+                  <p>
+                     <a href="./product.jsp?id=<%=rs.getString("p_productId")%>" class="btn btn-secondary">상세 정보 바로가기 &raquo;</a> 
+                    
+                     <%
+                        if(edit.equals("update")){
+                     %>
+                     <a href="./editProduct.jsp?id=<%=rs.getString("p_productId") %>" class="btn btn-success">수정 &raquo;</a>
+                     <%
+                        }
+                     %>
+                  </p>
                 </div>
               </div>
             </div>
             
             <%
 				}
+              if(rs != null) rs.close();
+              if(pstmt != null) pstmt.close();
+              if(conn != null) conn.close();
             %>
             <!-- 끝 상품 Item 
             상품에 들어갈 이미지 이름 목록
@@ -584,7 +601,7 @@
         </div>
 
       </div>
-
+      
     </section><!-- /Portfolio Section -->
     
     
