@@ -46,7 +46,15 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 </head>
-
+<script>
+function deleteConfirm(id){
+	if(confirm("해당 상품을 삭제하시겠습니까?") ==  true){
+		location.href="./deleteProduct.jsp?id="+id;
+	}else{
+		return;
+	}
+}
+</script>
 <body class="index-page">
 
   <!-- header include-->
@@ -576,6 +584,10 @@
                      %>
                      <a href="./editProduct.jsp?id=<%=rs.getString("p_productId") %>" class="btn btn-success">수정 &raquo;</a>
                      <%
+                        }else if(edit.equals("delete")){
+                            %>
+                            <a href="#" class="btn btn-danger" onclick="deleteConfirm('<%=rs.getString("p_productId") %>')">삭제 &raquo;</a>
+                            <%
                         }
                      %>
                   </p>

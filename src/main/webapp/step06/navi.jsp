@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    
 <header id="header" class="header fixed-top">
 
     <div class="topbar d-flex align-items-center">
@@ -59,7 +61,7 @@
 				<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<li><a class="dropdown-item" href="addProduct.jsp">판매제품 등록</a></li>
 							<li><a class="dropdown-item" href="index.jsp?edit=update#products">판매제품 수정</a></li>
-							<li><a class="dropdown-item" href="editProduct.jsp?edit=delete">판매제품 삭제</a></li>
+							<li><a class="dropdown-item" href="index.jsp?edit=delete#products">판매제품 삭제</a></li>
 				</ul>
 			</li>
 			<li class="nav-item dropdown">
