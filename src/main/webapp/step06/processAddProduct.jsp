@@ -63,8 +63,6 @@
 	pstmt.setInt(3, price);
 	pstmt.setString(4, description);
 	pstmt.setString(5, category);
-	/* pstmt.setString(6, manufacturer);
-	pstmt.setLong(7, stock); */
 	pstmt.setString(6, condition);
 	pstmt.setString(7, fileName);
 	pstmt.setInt(8, quantity);

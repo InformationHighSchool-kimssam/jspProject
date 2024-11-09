@@ -45,8 +45,8 @@ if(rs.next()){
 <!-- Main CSS File -->
   <link href="../resources/assets/css/main.css" rel="stylesheet">
 <style>
-input[type="file"]{
-opacity:0}
+/* input[type="file"]{
+opacity:0} */
 .file-label{
 background-color:lightgray;
 padding:10px 20px;
@@ -62,7 +62,7 @@ display:inline-block;
 <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
 <script>
 $(funtion(){
-	updateFileName();
+	/* updateFileName(); */
 
 function updateFileName(){
 	const input = document.getElementById("pImg")
@@ -213,8 +213,8 @@ enBtn.addEventListener("click",function(){
 								<input type="file" id="pImg"
 									name="pImg" onchange="updateFileName()">
 								<span id="file-name">
-								    <fmt:message key="noFile"/>
-								     
+								    <%-- <fmt:message key="noFile"/> --%>
+								    <%=rs.getString("p_filename") %>
 								</span> 
 							</div>
 						</div>
@@ -230,7 +230,7 @@ enBtn.addEventListener("click",function(){
 						</div>
 						<div class="row m-3">
 							<div class="col-6">
-								<input type="button" class="btn btn-secondary mb-3 btn-block" value="<fmt:message key="button"/>" onclick="form_check_addProduct()">
+								<input type="button" class="btn btn-secondary mb-3 btn-block" value="<fmt:message key="edit_button"/>" onclick="form_check_addProduct()">
 							</div>
 						</div>
 					</form>
