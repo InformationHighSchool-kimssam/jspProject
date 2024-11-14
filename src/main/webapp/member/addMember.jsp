@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>	
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="dto.Product"%>
 <jsp:useBean id="productDAO" class="dao.ProductRepository"
@@ -53,7 +54,56 @@
 	/* border:1px solid red; */
 	margin: 200px 100px;
 }
+
+.form-group {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
 </style>
+<script>
+	function checkForm(){
+		if(!document.newMember.id.value){
+			alert("아이디를 입력해주세요")
+			return false;
+		}
+		if(!document.newMember.password.value){
+			alert("비밀번호를 입력해주세요")
+			return false;
+		}
+		if(!document.newMember.password_confirm.value){
+			alert("비밀번호 확인을 입력해주세요")
+			return false;
+		}
+		if(!document.newMember.name.value){
+			alert("성명을 입력해주세요")
+			return false;
+		}
+		if(!document.newMember.gender.value){
+			alert("성별을 입력해주세요")
+			return false;
+		}
+		var select_month = document.getElementById("month");
+		
+		if(!document.newMember.birthyy.value || !document.newMember.birthdd.value || select_month.value == "" ){
+			alert("생년월일을 입력해주세요")
+			return false;
+		}
+		if(!document.newMember.mail1.value || !document.newMember.mail2.value){
+			alert("이메일을 입력해주세요")
+			return false;
+		}
+		if(!document.newMember.phone.value){
+			alert("전화번호를 입력해주세요")
+			return false;
+		}
+		if(!document.newMember.address.value){
+			alert("주소를 입력해주세요")
+			return false;
+		}
+		document.newMember.submit();
+	}
+</script>
+
 </head>
 
 <body>
@@ -66,44 +116,51 @@
 				<h1 class="display-3 text-center">회원 가입</h1>
 			</div>
 		</div>
-		<form name="newMember" class="form-horizontal"  action="<c:url value="/member/processAddMember.jsp"/>" method="post"> 
+		<form name="newMember" class="form-horizontal"
+			action="<c:url value="/member/processAddMember.jsp"/>" method="post">
 			<div class="form-group  row">
 				<label class="col-sm-2 ">아이디</label>
 				<div class="col-sm-3">
-					<input name="id" type="text" class="form-control" placeholder="id" required autofocus >
+					<input name="id" type="text" class="form-control" placeholder="id"
+						required autofocus>
 				</div>
 			</div>
-			<div class="form-group  row">
+			<div class="form-group  row ">
 				<label class="col-sm-2">비밀번호</label>
 				<div class="col-sm-3">
-					<input name="password" type="text" class="form-control" placeholder="password" >
+					<input name="password" type="text" class="form-control"
+						placeholder="password">
 				</div>
 			</div>
 			<div class="form-group  row">
 				<label class="col-sm-2">비밀번호확인</label>
 				<div class="col-sm-3">
-					<input name="password_confirm" type="text" class="form-control" placeholder="password confirm" >
+					<input name="password_confirm" type="text" class="form-control"
+						placeholder="password confirm">
 				</div>
 			</div>
 			<div class="form-group  row">
 				<label class="col-sm-2">성명</label>
 				<div class="col-sm-3">
-					<input name="name" type="text" class="form-control" placeholder="name" >
+					<input name="name" type="text" class="form-control"
+						placeholder="name">
 				</div>
 			</div>
 			<div class="form-group  row">
 				<label class="col-sm-2">성별</label>
 				<div class="col-sm-10">
-					<input name="gender" type="radio" value="남" /> 남 
-					<input name="gender" type="radio" value="여" /> 여
+					<input name="gender" type="radio" value="남" /> 남 <input
+						name="gender" type="radio" value="여" /> 여
 				</div>
 			</div>
 			<div class="form-group row">
 				<label class="col-sm-2">생일</label>
 				<div class="col-sm-6">
 					<!-- <input type="number" min="1900" max="2023" value="1980" class="form-control" placeholder="ID" name='id'> -->
-					<input type="text" name="birthyy" maxlength="4" placeholder="년(4자)" size="6" class="form-control w-25 d-inline"> 
-					<select name="birthmm" class="form-control w-25 d-inline">
+					<input type="text" name="birthyy" maxlength="4" placeholder="년(4자)"
+						size="6" class="form-control w-25 d-inline"> 
+					<select
+						name="birthmm" class="form-control w-25 d-inline" id="month">
 						<option value="">월</option>
 						<option value="01">1</option>
 						<option value="02">2</option>
@@ -118,38 +175,43 @@
 						<option value="11">11</option>
 						<option value="12">12</option>
 					</select> 
-					<input type="text" name="birthdd" maxlength="2" placeholder="일" size="4" class="form-control w-25 d-inline">
+					<input type="text" name="birthdd" maxlength="2" placeholder="일"
+						size="4" class="form-control w-25 d-inline">
 				</div>
 			</div>
 			<div class="form-group  row ">
 				<label class="col-sm-2">이메일</label>
 				<div class="col-sm-10">
 					<input type="text" name="mail1" maxlength="50">@ 
-					<select name="mail2">
+					<select
+						name="mail2">
 						<option>naver.com</option>
 						<option>daum.net</option>
 						<option>gmail.com</option>
 						<option>nate.com</option>
 					</select>
-				</div>				
+				</div>
 			</div>
 			<div class="form-group  row">
 				<label class="col-sm-2">전화번호</label>
 				<div class="col-sm-3">
-					<input name="phone" type="text" class="form-control" placeholder="phone" >
+					<input name="phone" type="text" class="form-control"
+						placeholder="phone">
 
 				</div>
 			</div>
 			<div class="form-group  row">
 				<label class="col-sm-2 ">주소</label>
 				<div class="col-sm-5">
-					<input name="address" type="text" class="form-control" placeholder="address">
+					<input name="address" type="text" class="form-control"
+						placeholder="address">
 				</div>
 			</div>
 			<div class="form-group  row">
 				<div class="col-sm-offset-2 col-sm-10 ">
-					<input type="button" class="btn btn-primary " value="등록 " onclick="checkForm()"> 
-					<input type="reset" class="btn btn-primary " value="취소 " onclick="reset()" >
+					<input type="button" class="btn btn-primary " value="등록 "
+						onclick="checkForm()"> <input type="reset"
+						class="btn btn-primary " value="취소 " onclick="reset()">
 				</div>
 			</div>
 		</form>

@@ -7,6 +7,7 @@ create table member(
     gender varchar2(10),
     birth varchar2(30),
     mail varchar2(30),
+    phone varchar2(30),
     address varchar2(100),
     regist_day varchar2(30),
     primary key (id)
@@ -14,7 +15,8 @@ create table member(
 select * from member;
 drop table member;
 commit;
-
+--데이터 삽입
+insert into member values('id명','1234','이름','남','2010-02-05','test@gmail.com','010-1234-5678','주소',sysdate);
 --product table
 create table product(
     p_productId varchar2(10) not null,
