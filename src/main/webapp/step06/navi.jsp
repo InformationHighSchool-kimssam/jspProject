@@ -32,11 +32,11 @@
         <nav id="navmenu" class="navmenu">
           <ul>
             <li><a href="<c:url value="/step06/index.jsp#hero"/>" class="active">Home<br></a></li>
-            <li><a href="/step06/index.jsp#about">About</a></li>
-            <li><a href="/step06/index.jsp#services">Services</a></li>
-            <li><a href="/step06/index.jsp#products">Products</a></li>
-            <li><a href="/step06/index.jsp#team">Team</a></li>
-            <li><a href="/step06/blog.jsp">Blog</a></li>
+            <li><a href='<c:url value="/step06/index.jsp#about"/>'>About</a></li>
+            <li><a href='<c:url value="/step06/index.jsp#services"/>'>Services</a></li>
+            <li><a href='<c:url value="/step06/index.jsp#products"/>'>Products</a></li>
+            <li><a href='<c:url value="/step06/index.jsp#team"/>'>Team</a></li>
+            <li><a href='<c:url value="/step06/blog.jsp"/>'>Blog</a></li>
             <!-- <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
               <ul>
                 <li><a href="#">Dropdown 1</a></li>
@@ -59,17 +59,17 @@
 			<li class="nav-item dropdown">
 			    <a	class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">판매제품 등록</a>
 				<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<li><a class="dropdown-item" href="addProduct.jsp">판매제품 등록</a></li>
-							<li><a class="dropdown-item" href="index.jsp?edit=update#products">판매제품 수정</a></li>
-							<li><a class="dropdown-item" href="index.jsp?edit=delete#products">판매제품 삭제</a></li>
+							<li><a class="dropdown-item" href='<c:url value="/step06/addProduct.jsp"/>'>판매제품 등록</a></li>
+							<li><a class="dropdown-item" href='<c:url value="/step06/index.jsp?edit=update#products"/>'>판매제품 수정</a></li>
+							<li><a class="dropdown-item" href='<c:url value="/step06/index.jsp?edit=delete#products"/>'>판매제품 삭제</a></li>
 				</ul>
 			</li>
 			<li class="nav-item dropdown">
 			    <a	class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">로그인</a>
 				<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<li><a class="dropdown-item" href="editProduct.jsp?edit=update">회원 로그인</a></li>
+							<li><a class="dropdown-item" href='<c:url value="/member/loginMember.jsp"/>'>회원 로그인</a></li>
 							<li><a class="dropdown-item" href='<c:url value="/member/addMember.jsp"/>'>회원 가입</a></li>
-							<li><a class="dropdown-item" href="editProduct.jsp?edit=delete">회원 수정</a></li>
+							<li><a class="dropdown-item" href='<c:url value="/member/updateMember.jsp"/>'>회원 수정</a></li>
 							<li><hr class="dropdown-divider"></li>
 							<li><a class="dropdown-item" href="#">배송 정보</a></li>
 				</ul>

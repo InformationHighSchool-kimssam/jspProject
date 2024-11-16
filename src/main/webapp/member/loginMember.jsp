@@ -1,12 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList" %>    
+<%@ page import="dto.Product" %>    
+<jsp:useBean id="productDAO" class="dao.ProductRepository" scope="session"/>
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<html lang="en">
 
-<!-- Favicons -->
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Index - Impact Bootstrap Template</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
   <link href="../resources/assets/img/favicon.png" rel="icon">
   <link href="../resources/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
@@ -24,36 +31,80 @@
 
   <!-- Main CSS File -->
   <link href="../resources/assets/css/main.css" rel="stylesheet">
-  
+
+  <!-- =======================================================
+  * Template Name: Impact
+  * Template URL: https://bootstrapmade.com/impact-bootstrap-business-website-template/
+  * Updated: Aug 07 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
 </head>
+
 <body>
-<style>
-#form_layout {
+  <style>
+  #form_layout {
 	/* border:1px solid red; */
 	margin: 200px 100px;
-}
-</style>
+  }
+   </style>
+   
   <!-- header include-->
   <%@ include file="/step06/navi.jsp" %>
-  <h1>회원정보</h1>
+  
+   
+  <h1>회원 로그인</h1>
   <div class="container text-center" id="form_layout">
-  	<%
-  	String msg = request.getParameter("msg");
-  	if(msg !=null){
-  		if(msg.equals("1")) out.print("<h2>회원가입을 축하드립니다. 다시 로그인해주세요.</h2>");
-  		else if(msg.equals("2")) {
-  			String loginId = (String)session.getAttribute("sessionId");
-  			out.print("<h2>"+loginId+"님 환영합니다.</h2>");
-  		}
-  	}else{
-  		out.print("<h2>회원정보가 존재하지 않습니다.</h2>");
-  	}
-  	%> 
-  </div>	
+  <h3>Please sign in</h3>
+  
+  <form name="loginMember" class="form-horizontal"
+			action="<c:url value="/member/processLoginMember.jsp"/>" method="post">
+			<div class="form-group row justify-content-center my-4">
+				<label class="col-sm-2 ">아이디</label>
+				<div class="col-sm-3">
+					<input name="id" type="text" class="form-control" placeholder="id"
+						required autofocus>
+				</div>
+			</div>
+			<div class="form-group row justify-content-center my-4">
+				<label class="col-sm-2">비밀번호</label>
+				<div class="col-sm-3">
+					<input name="pw" type="text" class="form-control"
+						placeholder="password">
+				</div>
+			</div>
+			<div class="form-group row justify-content-center">
+			   <div class="col-sm-5">
+			      <div class="d-grid gap-1">
+			      <%
+					String error = request.getParameter("error");
+						if (error != null) {
+							out.println("<div class='alert alert-danger mt-3'>");
+							out.println("아이디와 비번을 확인해 주세요.");
+							out.println("</div>");
+						}
+					%>
+			       <button class="mt-1 btn btn-lg btn-success btn-block" type="submit">로그인</button>
+			      </div>
+
+					
+
+				</div> 
+			</div>  
+	</form>
+	
+</div>
+  
+  
+  
+  
+  
+  
+	
   <!-- footer include -->
   <%@ include file="/step06/footer.jsp" %>
-  
-   <!-- Scroll Top -->
+ 
+  <!-- Scroll Top -->
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Preloader -->
@@ -71,6 +122,7 @@
 
   <!-- Main JS File -->
   <script src="../resources/assets/js/main.js"></script>
-  
+
 </body>
+
 </html>
