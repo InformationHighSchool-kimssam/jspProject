@@ -45,6 +45,9 @@
   			String loginId = (String)session.getAttribute("sessionId");
   			out.print("<h2>"+loginId+"님 환영합니다.</h2>");
   		}
+  		else if(msg.equals("0")) {
+  			out.print("<h2 class='alert alert-danger text-center'>회원정보가 수정되었습니다.</h2>");
+  		}
   	}else{
   		out.print("<h2>회원정보가 존재하지 않습니다.</h2>");
   	}
