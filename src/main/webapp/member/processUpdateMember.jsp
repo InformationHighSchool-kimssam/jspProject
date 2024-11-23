@@ -32,12 +32,9 @@
 user="C##dbexam" password="m1234"/>
 
 <sql:update dataSource="${dataSource}" var="resultSet">
-   UPDATE wm_MEMBER SET PASSWORD=?, NAME=?, GENDER=?, BIRTH=?, MAIL=?, PHONE=?, ADDRESS=?  WHERE ID=?
-   <!-- insert를 update 구문으로 수정함=>수정날짜만 현재 날짜로 업데이트함 -->
-	<sql:param value="<%=password%>" />
+   update member set name=?, gender=?,  mail=?, phone=?, address=? where id=?
 	<sql:param value="<%=name%>" />
 	<sql:param value="<%=gender%>" />
-	<sql:param value="<%=birth%>" />
 	<sql:param value="<%=mail%>" />
 	<sql:param value="<%=phone%>" />
 	<sql:param value="<%=address%>" />

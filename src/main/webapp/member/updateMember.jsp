@@ -107,7 +107,7 @@
 				<label class="col-sm-2">비밀번호</label>
 				<div class="col-sm-3">
 					<input name="password" type="text" class="form-control"
-						placeholder="password" value="<c:out value='${row.id}'/>">
+						placeholder="password" value="<c:out value='${row.password}'/>">
 				</div>
 			</div>
 			<div class="form-group  row">

@@ -1,9 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<!-- sessionId 얻어오기 -->
+<%
+String sessionId = (String)session.getAttribute("sessionId");
+%>
+<style>
+
+</style>
+
+
     
 <header id="header" class="header fixed-top">
-
     <div class="topbar d-flex align-items-center">
       <div class="container d-flex justify-content-center justify-content-md-between">
         <div class="contact-info d-flex align-items-center">
@@ -19,8 +28,26 @@
       </div>
     </div><!-- End Top Bar -->
 
-    <div class="branding d-flex align-items-cente">
-
+	<!-- 관리자용 네브 -->
+	<c:choose>
+		<c:when test='${sessionId eq "admin"}'>
+			<nav class="navmenu bg-secondary">
+				<ul>
+					<li><a class="dropdown-item"
+						href='<c:url value="/step06/addProduct.jsp"/>'>판매제품 등록</a></li>
+					<li><a class="dropdown-item"
+						href='<c:url value="/step06/index.jsp?edit=update#products"/>'>판매제품
+							수정</a></li>
+					<li><a class="dropdown-item"
+						href='<c:url value="/step06/index.jsp?edit=delete#products"/>'>판매제품
+							삭제</a></li>
+				</ul>
+			</nav>
+		</c:when>
+		<c:otherwise></c:otherwise>
+	</c:choose>
+	<div class="branding d-flex align-items-cente">
+      
       <div class="container position-relative d-flex align-items-center justify-content-between">
         <a href="index.jsp" class="logo d-flex align-items-center">
           <!-- Uncomment the line below if you also wish to use an image logo -->
@@ -28,16 +55,20 @@
           <h1 class="sitename">Impact</h1>
           <span>.</span>
         </a>
-
-        <nav id="navmenu" class="navmenu">
-          <ul>
-            <li><a href="<c:url value="/step06/index.jsp#hero"/>" class="active">Home<br></a></li>
-            <li><a href='<c:url value="/step06/index.jsp#about"/>'>About</a></li>
-            <li><a href='<c:url value="/step06/index.jsp#services"/>'>Services</a></li>
-            <li><a href='<c:url value="/step06/index.jsp#products"/>'>Products</a></li>
-            <li><a href='<c:url value="/step06/index.jsp#team"/>'>Team</a></li>
-            <li><a href='<c:url value="/step06/blog.jsp"/>'>Blog</a></li>
-            <!-- <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+        
+           
+			
+<!-- 			일반 사용자용 네브 -->
+		 <nav id="navmenu" class="navmenu">
+				<ul>
+					<li><a href="<c:url value="/step06/index.jsp#hero"/>"
+						class="active">Home<br></a></li>
+					<li><a href='<c:url value="/step06/index.jsp#about"/>'>About</a></li>
+					<li><a href='<c:url value="/step06/index.jsp#services"/>'>Services</a></li>
+					<li><a href='<c:url value="/step06/index.jsp#products"/>'>Products</a></li>
+					<li><a href='<c:url value="/step06/index.jsp#team"/>'>Team</a></li>
+					<li><a href='<c:url value="/step06/blog.jsp"/>'>Blog</a></li>
+					<!-- <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
               <ul>
                 <li><a href="#">Dropdown 1</a></li>
                 <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
@@ -55,27 +86,28 @@
               </ul>
             </li>
             -->
-            <li><a href="index.jsp#contact">Contact</a></li>
-			<li class="nav-item dropdown">
-			    <a	class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">판매제품 등록</a>
-				<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<li><a class="dropdown-item" href='<c:url value="/step06/addProduct.jsp"/>'>판매제품 등록</a></li>
-							<li><a class="dropdown-item" href='<c:url value="/step06/index.jsp?edit=update#products"/>'>판매제품 수정</a></li>
-							<li><a class="dropdown-item" href='<c:url value="/step06/index.jsp?edit=delete#products"/>'>판매제품 삭제</a></li>
+					<li><a href="index.jsp#contact">게시판</a></li>
+
+					<c:choose>
+						<c:when test="${empty sessionId}">
+							<li><a class="dropdown-item"
+								href='<c:url value="/member/loginMember.jsp"/>'>회원 로그인</a></li>
+							<li><a class="dropdown-item"
+								href='<c:url value="/member/addMember.jsp"/>'>회원 가입</a></li>
+						</c:when>
+
+						<c:otherwise>
+						    <li style="color:orange">[<%=sessionId %>]님 로긴중</li>
+							<li><a class="dropdown-item"
+								href='<c:url value="/member/updateMember.jsp"/>'>회원 수정</a></li>
+							<li><a class="dropdown-item"
+								href='<c:url value="/member/logoutMember.jsp"/>'>로그아웃</a></li>
+						</c:otherwise>
+					</c:choose>
+					<li><hr class="dropdown-divider"></li>
+					<li><a class="dropdown-item" href="#">배송 정보</a></li>
 				</ul>
-			</li>
-			<li class="nav-item dropdown">
-			    <a	class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">로그인</a>
-				<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<li><a class="dropdown-item" href='<c:url value="/member/loginMember.jsp"/>'>회원 로그인</a></li>
-							<li><a class="dropdown-item" href='<c:url value="/member/addMember.jsp"/>'>회원 가입</a></li>
-							<li><a class="dropdown-item" href='<c:url value="/member/updateMember.jsp"/>'>회원 수정</a></li>
-							<li><hr class="dropdown-divider"></li>
-							<li><a class="dropdown-item" href="#">배송 정보</a></li>
-				</ul>
-			</li>
-		</ul>
-          <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+				<i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
 
       </div>
