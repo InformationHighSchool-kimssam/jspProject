@@ -6,9 +6,7 @@
 <%
 String sessionId = (String)session.getAttribute("sessionId");
 %>
-<style>
 
-</style>
 
 
     
@@ -86,7 +84,7 @@ String sessionId = (String)session.getAttribute("sessionId");
               </ul>
             </li>
             -->
-					<li><a href="index.jsp#contact">게시판</a></li>
+					<li><a href='<c:url value="/BoardListAction.do?pageNum=1"/>'>게시판</a></li>
 
 					<c:choose>
 						<c:when test="${empty sessionId}">
