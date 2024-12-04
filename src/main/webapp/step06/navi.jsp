@@ -47,7 +47,7 @@ String sessionId = (String)session.getAttribute("sessionId");
 	<div class="branding d-flex align-items-cente">
       
       <div class="container position-relative d-flex align-items-center justify-content-between">
-        <a href="index.jsp" class="logo d-flex align-items-center">
+        <a href='<c:url value="/step06/index.jsp#about"/>' class="logo d-flex align-items-center">
           <!-- Uncomment the line below if you also wish to use an image logo -->
           <!-- <img src="../resources/assets/img/logo.png" alt=""> -->
           <h1 class="sitename">Impact</h1>
@@ -59,7 +59,7 @@ String sessionId = (String)session.getAttribute("sessionId");
 <!-- 			일반 사용자용 네브 -->
 		 <nav id="navmenu" class="navmenu">
 				<ul>
-					<li><a href="<c:url value="/step06/index.jsp#hero"/>"
+					<li><a href="<c:url value="/step06/index.jsp"/>"
 						class="active">Home<br></a></li>
 					<li><a href='<c:url value="/step06/index.jsp#about"/>'>About</a></li>
 					<li><a href='<c:url value="/step06/index.jsp#services"/>'>Services</a></li>

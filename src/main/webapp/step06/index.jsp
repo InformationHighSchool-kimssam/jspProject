@@ -20,7 +20,7 @@
   <meta name="keywords" content="">
 
   <!-- Favicons -->
-  <link href="../resources/assets/img/favicon.png" rel="icon">
+  <link href="${pageContext.request.contextPath}/resources/assets/img/favicon.png" rel="icon">
   <link href="../resources/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Fonts -->
@@ -31,12 +31,15 @@
   <!-- Vendor CSS Files -->
   <link href="../resources/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="../resources/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="../resources/assets/vendor/aos/aos.css" rel="stylesheet">
+  <!-- <link href="../resources/assets/vendor/aos/aos.css" rel="stylesheet"> -->
   <link href="../resources/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="../resources/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Main CSS File -->
   <link href="../resources/assets/css/main.css" rel="stylesheet">
+  <style type="text/css">
+    
+  </style>
 
   <!-- =======================================================
   * Template Name: Impact
@@ -63,8 +66,8 @@ function deleteConfirm(id){
   <main class="main">
     test
     <!-- Hero Section -->
-    <section id="hero" class="hero section accent-background">
-
+    <section id="hero" class="hero section">
+	
       <div class="container position-relative" data-aos="fade-up" data-aos-delay="100">
         <div class="row gy-5 justify-content-between">
           <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
@@ -76,7 +79,7 @@ function deleteConfirm(id){
             </div>
           </div>
           <div class="col-lg-5 order-1 order-lg-2">
-            <img src="../resources/../resources/assets/img/hero-img.svg" class="img-fluid" alt="">
+            <img src="../resources/assets/img/hero-img.svg" class="img-fluid" alt="">
           </div>
         </div>
       </div>
@@ -133,7 +136,7 @@ function deleteConfirm(id){
         <div class="row gy-4">
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
             <h3>Voluptatem dignissimos provident laboris nisi ut aliquip ex ea commodo</h3>
-            <img src="../resources/../resources/assets/img/about.jpg" class="img-fluid rounded-4 mb-4" alt="">
+            <img src="../resources/assets/img/about.jpg" class="img-fluid rounded-4 mb-4" alt="">
             <p>Ut fugiat ut sunt quia veniam. Voluptate perferendis perspiciatis quod nisi et. Placeat debitis quia recusandae odit et consequatur voluptatem. Dignissimos pariatur consectetur fugiat voluptas ea.</p>
             <p>Temporibus nihil enim deserunt sed ea. Provident sit expedita aut cupiditate nihil vitae quo officia vel. Blanditiis eligendi possimus et in cum. Quidem eos ut sint rem veniam qui. Ut ut repellendus nobis tempore doloribus debitis explicabo similique sit. Accusantium sed ut omnis beatae neque deleniti repellendus.</p>
           </div>
@@ -154,7 +157,7 @@ function deleteConfirm(id){
               </p>
 
               <div class="position-relative mt-4">
-                <img src="../resources/../resources/assets/img/about-2.jpg" class="img-fluid rounded-4" alt="">
+                <img src="../resources/assets/img/about-2.jpg" class="img-fluid rounded-4" alt="">
                 <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox pulsating-play-btn"></a>
               </div>
             </div>
@@ -205,8 +208,8 @@ function deleteConfirm(id){
             }
           </script>
           <div class="swiper-wrapper align-items-center">
-            <div class="swiper-slide"><img src="../resources/../resources/assets/img/clients/client-1.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="../resources/../resources/assets/img/clients/client-2.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="../resources/assets/img/clients/client-1.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="../resources/assets/img/clients/client-2.png" class="img-fluid" alt=""></div>
             <div class="swiper-slide"><img src="../resources/assets/img/clients/client-3.png" class="img-fluid" alt=""></div>
             <div class="swiper-slide"><img src="../resources/assets/img/clients/client-4.png" class="img-fluid" alt=""></div>
             <div class="swiper-slide"><img src="../resources/assets/img/clients/client-5.png" class="img-fluid" alt=""></div>
@@ -289,6 +292,7 @@ function deleteConfirm(id){
     <section id="call-to-action" class="call-to-action section dark-background">
 
       <div class="container">
+      
         <img src="../resources/assets/img/cta-bg.jpg" alt="">
         <div class="content row justify-content-center" data-aos="zoom-in" data-aos-delay="100">
           <div class="col-xl-10">

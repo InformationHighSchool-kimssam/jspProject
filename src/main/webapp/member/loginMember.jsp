@@ -52,7 +52,7 @@
   <!-- header include-->
   <%@ include file="/step06/navi.jsp" %>
   
-   
+  
   <h1>회원 로그인</h1>
   <div class="container text-center" id="form_layout">
   <h3>Please sign in</h3>

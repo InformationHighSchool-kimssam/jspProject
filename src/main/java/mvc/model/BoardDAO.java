@@ -29,9 +29,9 @@ public class BoardDAO {
 	   String sql;
 	   
 	   if(items == null && text == null) //검색을 안했을 때
-		   sql = "select count(*) from board";
+		   sql = "select count(*) from wm_board";
 	   else
-		   sql = "select count(*) from board where "+items+" like '%"+text+"%'";
+		   sql = "select count(*) from wm_board where "+items+" like '%"+text+"%'";
 	   
 	   try {
 		   conn = DBConnection.getConnection();
@@ -60,7 +60,7 @@ public class BoardDAO {
 	   PreparedStatement pstmt = null;
 	   ResultSet rs = null;
 	   
-	   String sql="select * from board order by board_seq desc";
+	   String sql="select * from wm_board order by wm_seq_num desc";
 	   
 	   ArrayList<BoardDTO> list = new ArrayList<BoardDTO>();
 	   
@@ -70,7 +70,7 @@ public class BoardDAO {
   		     rs = pstmt.executeQuery();
   		     while(rs.next()) {
   		    	BoardDTO board = new BoardDTO();
-  		    	board.setNum(rs.getInt("board_seq"));
+  		    	board.setNum(rs.getInt("wm_seq_num"));
   		    	board.setId(rs.getString("id"));
   		    	board.setName(rs.getString("name"));
   		    	board.setSubject(rs.getString("subject"));
@@ -82,7 +82,7 @@ public class BoardDAO {
   		    	
   		    	list.add(board);
   		     }
-  		     
+  		   return list;
        }catch(Exception e) {
           System.out.println("getBoardList() 에러 : "+e);
        }finally {
@@ -90,11 +90,11 @@ public class BoardDAO {
 				 if(rs !=null) rs.close();
 				 if(pstmt !=null) pstmt.close();
 				 if(conn !=null) conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
+			} catch (Exception ex) {
+				throw new RuntimeException(ex.getMessage());
 			}
        }
-       return list;
+       return null;
    }
    
 }
